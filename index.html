@@ -591,7 +591,174 @@ body {
         <h3>Smart mix — the differentiator</h3>
         <p>Cultural phrases ("insha allah", "ore mi", "salamat") are never sanitized. Familiar phrases stay in your language as anchors. Only genuinely new vocabulary is surfaced in the target language.</p>
       </div>
+      <div class="benefit-card" style="grid-column: 1 / -1; border-color: var(--accent); border-width: 1.5px;">
+        <div class="bc-icon bc-green">★</div>
+        <h3>Learn any language — regardless of who you're talking to</h3>
+        <p>The language you're learning is completely independent of your conversation partner's language. You can learn Korean while talking to someone from the Philippines or Pakistan. Set Korean as your target and every conversation — no matter what language the other person speaks — becomes a Korean practice session. Bridge decouples language acquisition from who happens to be on the other side of the chat.</p>
+      </div>
     </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DEMO -->
+  <div class="section">
+    <div class="section-tag">See it in action</div>
+    <h2>Two real conversations. One language layer.</h2>
+    <p class="lead">Comfort language: English. Learning: Yoruba. Every phrase broken down inline — nothing skipped, nothing sanitized.</p>
+
+    <style>
+      .demo-wrap { background: #f0f0eb; border-radius: 14px; padding: 20px; margin-bottom: 24px; }
+      .demo-bar { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #fff; border-radius: 10px 10px 0 0; border-bottom: 1px solid #e4e4dc; }
+      .demo-av { width: 30px; height: 30px; border-radius: 50%; background: #e1f5ee; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #085041; flex-shrink: 0; }
+      .demo-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+      .demo-sub { font-size: 10.5px; color: var(--ink-muted); }
+      .demo-badge { margin-left: auto; font-size: 10px; padding: 3px 9px; border-radius: 20px; background: #e1f5ee; color: #085041; font-weight: 500; }
+      .demo-chat { background: #f5f5f0; padding: 14px; display: flex; flex-direction: column; gap: 12px; }
+      .demo-mg { display: flex; flex-direction: column; gap: 4px; }
+      .demo-mg.out { align-items: flex-end; }
+      .demo-mg.in { align-items: flex-start; }
+      .demo-bub { border-radius: 14px; padding: 9px 13px; font-size: 13px; line-height: 1.55; max-width: 84%; font-family: var(--sans); }
+      .db-in { background: #fff; border: 1px solid #e4e4dc; color: var(--ink); border-bottom-left-radius: 4px; }
+      .db-out { background: #2d6a4f; color: #fff; border-bottom-right-radius: 4px; }
+      .demo-tr { border-radius: 10px; padding: 8px 12px; font-size: 11.5px; line-height: 1.6; max-width: 84%; border: 1px dashed; }
+      .dtr-in { background: #eaf3de; border-color: #97c459; color: #173404; }
+      .dtr-out { background: #f8f4ff; border-color: #afa9ec; color: #26215c; }
+      .dtr-hdr { font-size: 9.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+      .dtr-in .dtr-hdr { color: #3b6d11; }
+      .dtr-out .dtr-hdr { color: #534ab7; }
+      .pnotes { margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(0,0,0,.08); display: flex; flex-direction: column; gap: 4px; }
+      .pn { font-size: 11px; display: flex; align-items: baseline; gap: 5px; flex-wrap: wrap; line-height: 1.5; }
+      .ph { font-weight: 600; border-bottom: 1.5px dotted; text-underline-offset: 2px; }
+      .eq { color: #aaa; font-size: 10px; }
+      .mn { color: #555; flex: 1; }
+      .stg { font-size: 9.5px; padding: 1px 7px; border-radius: 20px; white-space: nowrap; }
+      .nw .ph { color: #534ab7; border-color: #534ab7; } .nw .stg { background: #eeedfe; color: #3c3489; }
+      .kn .ph { color: #1d9e75; border-color: #1d9e75; } .kn .stg { background: #eaf3de; color: #27500a; }
+      .cu .ph { color: #ba7517; border-color: #ba7517; } .cu .stg { background: #faeeda; color: #633806; }
+      .fd .ph { color: #aaa; border-color: #ccc; } .fd .stg { background: #f0f0eb; color: #888; }
+      .kw-nw { color: #534ab7; font-weight: 500; border-bottom: 1.5px dotted #534ab7; text-underline-offset: 2px; }
+      .kw-kn { color: #1d9e75; font-weight: 500; border-bottom: 1.5px dotted #1d9e75; text-underline-offset: 2px; }
+      .kw-cu { color: #ba7517; font-weight: 500; border-bottom: 1.5px dotted #ba7517; text-underline-offset: 2px; }
+      .kw-fd { color: #aaa; font-weight: 500; border-bottom: 1.5px dotted #ccc; text-underline-offset: 2px; }
+      .demo-leg { display: flex; gap: 14px; flex-wrap: wrap; padding: 10px 14px; border-top: 1px solid #e4e4dc; background: #fff; }
+      .lli { display: flex; align-items: center; gap: 5px; font-size: 10.5px; color: var(--ink-muted); font-family: var(--sans); }
+      .lld { width: 8px; height: 8px; border-radius: 50%; }
+      .demo-compose { background: #fff; border-top: 1px solid #e4e4dc; border-radius: 0 0 10px 10px; padding: 12px 14px; }
+      .compose-hdr-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+      .compose-lbl { font-size: 9.5px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--ink-muted); font-family: var(--sans); }
+      .tone-tog { display: flex; border: 1px solid #d0d0c8; border-radius: 20px; overflow: hidden; margin-left: auto; }
+      .tone-btn { font-size: 10.5px; padding: 4px 12px; cursor: pointer; color: var(--ink-muted); background: transparent; border: none; font-family: var(--sans); }
+      .tone-btn.ton-c { background: #e1f5ee; color: #085041; font-weight: 600; }
+      .tone-btn.ton-f { background: #eeedfe; color: #3c3489; font-weight: 600; }
+      .compose-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+      .compose-side .clbl { font-size: 10px; color: var(--ink-muted); margin-bottom: 4px; font-family: var(--sans); }
+      .compose-side .ctxt { font-size: 12.5px; color: var(--ink); line-height: 1.6; font-family: var(--sans); }
+      .compose-side .ctxt-yo { font-size: 12.5px; color: #3c3489; line-height: 1.6; font-family: var(--sans); }
+      .sugg-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; align-items: center; }
+      .sugg-lbl { font-size: 10px; color: var(--ink-muted); font-family: var(--sans); }
+      .sugg-chip { font-size: 11px; padding: 4px 10px; border: 1px solid #cecbf6; border-radius: 20px; color: #3c3489; background: #eeedfe; font-family: var(--sans); }
+      .tone-note { font-size: 10.5px; color: var(--ink-muted); margin-top: 7px; line-height: 1.5; font-family: var(--sans); }
+      .demo-section-label { font-size: 11px; font-weight: 600; color: var(--ink-muted); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; margin-top: 20px; }
+    </style>
+
+    <!-- CONVERSATION 1 -->
+    <div class="demo-section-label">Conversation 1 — Candidate greeting</div>
+    <div class="demo-wrap">
+      <div style="background:#fff; border-radius:10px; overflow:hidden;">
+        <div class="demo-bar">
+          <div class="demo-av">AK</div>
+          <div>
+            <div class="demo-name">Adewale Kayode</div>
+            <div class="demo-sub">Yoruba speaker · LinkedIn DM</div>
+          </div>
+          <div class="demo-badge">EN → YO</div>
+        </div>
+        <div class="demo-chat">
+
+          <!-- MSG 1 IN -->
+          <div class="demo-mg in">
+            <div class="demo-bub db-in">Mo wa daadaa. E se, ore mi. Nje o wa?</div>
+            <div class="demo-tr dtr-in">
+              <div class="dtr-hdr">English</div>
+              I am fine. Thank you, my friend. How are you?
+              <div class="pnotes">
+                <div class="pn kn"><span class="ph">"Mo wa daadaa"</span><span class="eq">=</span><span class="mn">I am fine / I am well</span><span class="stg">seen 8× — yours</span></div>
+                <div class="pn fd"><span class="ph">"E se"</span><span class="eq">=</span><span class="mn">Thank you</span><span class="stg">seen 7× — fading</span></div>
+                <div class="pn cu"><span class="ph">"ore mi"</span><span class="eq">=</span><span class="mn">my friend / my brother — warm, casual</span><span class="stg">cultural</span></div>
+                <div class="pn nw"><span class="ph">"Nje o wa?"</span><span class="eq">=</span><span class="mn">How are you? / Are you there?</span><span class="stg">new</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MSG 2 IN -->
+          <div class="demo-mg in">
+            <div class="demo-bub db-in">Ẹ jẹ kí a sọrọ nípa iṣẹ naa. Mo fẹ mọ ohun tí ẹ nfẹ.</div>
+            <div class="demo-tr dtr-in">
+              <div class="dtr-hdr">English</div>
+              Let's talk about the job. I want to know what you're looking for.
+              <div class="pnotes">
+                <div class="pn nw"><span class="ph">"Ẹ jẹ kí a"</span><span class="eq">=</span><span class="mn">Let's / Let us (polite invitation)</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"sọrọ"</span><span class="eq">=</span><span class="mn">talk / speak / discuss</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"nípa iṣẹ naa"</span><span class="eq">=</span><span class="mn">about the job / regarding the position</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"Mo fẹ mọ"</span><span class="eq">=</span><span class="mn">I want to know / I'd like to understand</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"ohun tí ẹ nfẹ"</span><span class="eq">=</span><span class="mn">what you want / what you are looking for</span><span class="stg">new</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- MSG OUT -->
+          <div class="demo-mg out">
+            <div class="demo-bub db-out">I'm good thanks! Looking for someone with 3 years experience. Are you free next week?</div>
+            <div class="demo-tr dtr-out">
+              <div class="dtr-hdr">Yoruba preview · casual</div>
+              <span class="kw-kn">Mo wa daadaa</span>, <span class="kw-fd">e se</span>! <span class="kw-nw">Mo n wa ẹnikan</span> <span class="kw-nw">tó ní ọdún mẹta iriri</span>. <span class="kw-nw">Ṣé o wà free</span> <span class="kw-nw">ní ọsẹ tó ń bọ</span>?
+              <div class="pnotes" style="border-top:1px solid rgba(83,74,183,.15);">
+                <div class="pn kn"><span class="ph" style="color:#1d9e75;border-color:#1d9e75">"Mo wa daadaa"</span><span class="eq">=</span><span class="mn">I'm good</span><span class="stg" style="background:#eaf3de;color:#27500a">yours</span></div>
+                <div class="pn fd"><span class="ph">"e se"</span><span class="eq">=</span><span class="mn">thanks</span><span class="stg">fading</span></div>
+                <div class="pn nw"><span class="ph">"Mo n wa ẹnikan"</span><span class="eq">=</span><span class="mn">I am looking for someone</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"tó ní ọdún mẹta iriri"</span><span class="eq">=</span><span class="mn">who has three years of experience</span><span class="stg">new</span></div>
+                <div class="pn nw"><span class="ph">"ọsẹ tó ń bọ"</span><span class="eq">=</span><span class="mn">next week (lit. the week that is coming)</span><span class="stg">new</span></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="demo-leg">
+          <div class="lli"><div class="lld" style="background:#534ab7"></div>New phrase</div>
+          <div class="lli"><div class="lld" style="background:#1d9e75"></div>You know this</div>
+          <div class="lli"><div class="lld" style="background:#ba7517"></div>Cultural — kept as-is</div>
+          <div class="lli"><div class="lld" style="background:#b4b2a9"></div>Fading (tap to confirm)</div>
+        </div>
+        <div class="demo-compose">
+          <div class="compose-hdr-row">
+            <span class="compose-lbl">Compose — live parallel preview</span>
+            <div class="tone-tog">
+              <button class="tone-btn ton-c">Casual</button>
+              <button class="tone-btn">Formal</button>
+            </div>
+          </div>
+          <div class="compose-grid">
+            <div class="compose-side">
+              <div class="clbl">You typing (English)</div>
+              <div class="ctxt">Perfect, I'll send you the details tonight. Looking forward to speaking with you.</div>
+            </div>
+            <div class="compose-side">
+              <div class="clbl">Live Yoruba preview</div>
+              <div class="ctxt-yo"><span class="kw-kn">Daadaa</span>, <span class="kw-nw">emi yoo rang ọ alẹ yi pẹlu alaye</span>. <span class="kw-nw">Mo n retí láti ba ọ sọrọ</span>.</div>
+            </div>
+          </div>
+          <div class="sugg-row">
+            <span class="sugg-lbl">More natural:</span>
+            <span class="sugg-chip">A ó sọrọ jẹ</span>
+            <span class="sugg-chip">Emi yoo WhatsApp ọ alẹ yi</span>
+          </div>
+          <div class="tone-note">Casual — matches Adewale's tone. He used "ore mi" and "Nje o wa?" — friendly and warm.</div>
+        </div>
+      </div>
+    </div>
+
+
   </div>
 
   <div class="divider"></div>
@@ -646,6 +813,11 @@ body {
         <div class="bc-icon bc-purple">◎</div>
         <h3>The conversation never drops</h3>
         <p>When you're in the chat, Bridge is embedded in it. When you leave, it follows as a floating bubble — exactly like Messenger chat heads. A reply you started on LinkedIn can be finished from a Google Doc tab. The bilingual layer travels with the conversation, not with the platform.</p>
+      </div>
+      <div class="benefit-card" style="grid-column: 1 / -1; border-color: var(--accent); border-width: 1.5px;">
+        <div class="bc-icon bc-green">★</div>
+        <h3>Learn any language through any conversation</h3>
+        <p>Your target language has nothing to do with who you're talking to. Talking to a teammate in Manila or a candidate in Karachi? Set Korean as your target language and Bridge will show you Korean translations in your compose preview — every outgoing message becomes Korean practice. You are not limited to learning the other person's language. You learn whatever language you want, through whatever conversations you're already having.</p>
       </div>
     </div>
   </div>
@@ -915,6 +1087,160 @@ body {
 
   <div class="divider"></div>
 
+  <!-- LIVE EXAMPLES -->
+  <div class="section">
+    <div class="section-tag">Live examples</div>
+    <h2>What it actually looks like.</h2>
+    <p class="lead">Comfort language: English. Learning: Yoruba. Every phrase in every message is broken down — nothing skipped. The compose panel shows a live Yoruba preview as you type, with a tone toggle to switch between casual and formal.</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px;">
+
+      <!-- CONVERSATION DEMO -->
+      <div style="background:#f5f5f2;border-radius:14px;overflow:hidden;border:1px solid var(--border);">
+        <!-- topbar -->
+        <div style="padding:10px 16px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;">
+          <div style="width:32px;height:32px;border-radius:50%;background:#e1f5ee;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#085041;flex-shrink:0;">AK</div>
+          <div>
+            <div style="font-size:13px;font-weight:500;color:#1a1a18;">Adewale Kayode</div>
+            <div style="font-size:10.5px;color:#8a8a82;">Yoruba speaker · LinkedIn DM</div>
+          </div>
+          <div style="margin-left:auto;font-size:10px;padding:3px 9px;border-radius:20px;background:#e1f5ee;color:#085041;font-weight:500;">EN → YO</div>
+        </div>
+
+        <!-- messages -->
+        <div style="padding:14px;display:flex;flex-direction:column;gap:12px;">
+
+          <!-- msg 1 in -->
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:14px;border-bottom-left-radius:4px;padding:9px 13px;font-size:12.5px;line-height:1.55;max-width:85%;color:#1a1a18;">Mo wa daadaa. E se, ore mi. Nje o wa?</div>
+            <div style="background:#eaf3de;border:1px dashed #97c459;border-radius:10px;padding:8px 12px;font-size:11.5px;line-height:1.6;max-width:85%;">
+              <div style="font-size:9.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#3b6d11;margin-bottom:4px;">English</div>
+              <div style="color:#173404;margin-bottom:6px;">I am fine. Thank you, my friend. How are you?</div>
+              <div style="border-top:1px solid rgba(0,0,0,.08);padding-top:5px;display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#1d9e75;border-bottom:1.5px dotted #1d9e75;">"Mo wa daadaa"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">I am fine / I am well</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eaf3de;color:#27500a;">seen 8× — yours</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#888;border-bottom:1.5px dotted #ccc;">"E se"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">Thank you</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#f1efe8;color:#5f5e5a;">seen 7× — fading</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#ba7517;border-bottom:1.5px dotted #ba7517;">"ore mi"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">my friend / my brother (warm, casual)</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#faeeda;color:#633806;">cultural</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"Nje o wa?"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">How are you? / Are you there?</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- msg 2 in -->
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-start;">
+            <div style="background:#fff;border:1px solid var(--border);border-radius:14px;border-bottom-left-radius:4px;padding:9px 13px;font-size:12.5px;line-height:1.55;max-width:85%;color:#1a1a18;">Ẹ jẹ kí a sọrọ nípa iṣẹ naa. Mo fẹ mọ ohun tí ẹ nfẹ.</div>
+            <div style="background:#eaf3de;border:1px dashed #97c459;border-radius:10px;padding:8px 12px;font-size:11.5px;line-height:1.6;max-width:85%;">
+              <div style="font-size:9.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#3b6d11;margin-bottom:4px;">English</div>
+              <div style="color:#173404;margin-bottom:6px;">Let's talk about the job. I want to know what you're looking for.</div>
+              <div style="border-top:1px solid rgba(0,0,0,.08);padding-top:5px;display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"Ẹ jẹ kí a"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">Let's / Let us (polite invitation)</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"sọrọ"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">talk / speak / discuss</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"nípa iṣẹ naa"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">about the job / regarding the position</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"Mo fẹ mọ"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">I want to know / I'd like to understand</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"ohun tí ẹ nfẹ"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">what you want / what you are looking for</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- msg out -->
+          <div style="display:flex;flex-direction:column;gap:4px;align-items:flex-end;">
+            <div style="background:#534ab7;border-radius:14px;border-bottom-right-radius:4px;padding:9px 13px;font-size:12.5px;line-height:1.55;max-width:85%;color:#eeedfe;">I'm good thanks! Looking for someone with 3 years experience. Are you free next week?</div>
+            <div style="background:#f8f4ff;border:1px dashed #afa9ec;border-radius:10px;padding:8px 12px;font-size:11.5px;line-height:1.6;max-width:85%;">
+              <div style="font-size:9.5px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#534ab7;margin-bottom:4px;">Yoruba preview · casual</div>
+              <div style="color:#26215c;margin-bottom:6px;"><span style="font-weight:500;color:#1d9e75;border-bottom:1.5px dotted #1d9e75;">Mo wa daadaa</span>, <span style="font-weight:500;color:#888;border-bottom:1.5px dotted #ccc;">e se</span>! <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Mo n wa ẹnikan tó ní ọdún mẹta iriri</span>. <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Ṣé o wà free ní ọsẹ tó ń bọ</span>?</div>
+              <div style="border-top:1px solid rgba(83,74,183,.15);padding-top:5px;display:flex;flex-direction:column;gap:3px;">
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"Mo n wa ẹnikan"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">I am looking for someone</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+                <div style="font-size:10.5px;display:flex;gap:5px;flex-wrap:wrap;align-items:baseline;"><span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">"ọsẹ tó ń bọ"</span><span style="color:#888;font-size:10px;">=</span><span style="color:#4a4a44;">next week (lit. the week that is coming)</span><span style="font-size:9.5px;padding:1px 7px;border-radius:20px;background:#eeedfe;color:#3c3489;">new</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- legend -->
+          <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:6px;border-top:1px solid var(--border);">
+            <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:#4a4a44;"><div style="width:8px;height:8px;border-radius:50%;background:#534ab7;"></div>New phrase</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:#4a4a44;"><div style="width:8px;height:8px;border-radius:50%;background:#1d9e75;"></div>You know this</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:#4a4a44;"><div style="width:8px;height:8px;border-radius:50%;background:#ba7517;"></div>Cultural — kept as-is</div>
+            <div style="display:flex;align-items:center;gap:5px;font-size:10.5px;color:#4a4a44;"><div style="width:8px;height:8px;border-radius:50%;background:#b4b2a9;"></div>Fading</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMPOSE + TONE DEMO -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+
+        <!-- tone toggle + compose -->
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;">
+          <div style="padding:10px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;">
+            <span style="font-size:10px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#8a8a82;">Compose — live parallel preview</span>
+            <div id="tone-toggle" style="display:flex;border:1px solid #d3d1c7;border-radius:20px;overflow:hidden;margin-left:auto;">
+              <button id="btn-casual" onclick="setTone('casual')" style="font-size:10.5px;padding:4px 12px;cursor:pointer;background:#e1f5ee;color:#085041;font-weight:500;border:none;font-family:inherit;">Casual</button>
+              <button id="btn-formal" onclick="setTone('formal')" style="font-size:10.5px;padding:4px 12px;cursor:pointer;background:transparent;color:#8a8a82;border:none;font-family:inherit;">Formal</button>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px 14px;">
+            <div>
+              <div style="font-size:10px;color:#8a8a82;margin-bottom:4px;">You typing (English)</div>
+              <div style="font-size:12.5px;color:#1a1a18;line-height:1.6;">Perfect, I'll send you the details tonight. Looking forward to speaking with you.</div>
+            </div>
+            <div>
+              <div style="font-size:10px;color:#8a8a82;margin-bottom:4px;">Live Yoruba preview</div>
+              <div id="yoruba-preview" style="font-size:12.5px;color:#3c3489;line-height:1.6;"><span style="font-weight:500;color:#1d9e75;border-bottom:1.5px dotted #1d9e75;">Daadaa</span>, <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">emi yoo rang ọ alẹ yi pẹlu alaye</span>. <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Mo n retí láti ba ọ sọrọ</span>.</div>
+            </div>
+          </div>
+          <div style="padding:0 14px 10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;">
+            <span style="font-size:10px;color:#8a8a82;">More natural:</span>
+            <span id="s1" style="font-size:11px;padding:4px 10px;border:1px solid #cecbf6;border-radius:20px;color:#3c3489;background:#eeedfe;">A ó sọrọ jẹ</span>
+            <span id="s2" style="font-size:11px;padding:4px 10px;border:1px solid #cecbf6;border-radius:20px;color:#3c3489;background:#eeedfe;">Emi yoo WhatsApp ọ alẹ yi</span>
+          </div>
+          <div id="tone-note" style="padding:8px 14px;background:#f5f5f2;border-top:1px solid var(--border);font-size:10.5px;color:#8a8a82;line-height:1.5;"><strong style="color:#4a4a44;">Casual</strong> — matches Adewale's tone. He used "ore mi" — friendly and warm. Switching to formal may feel slightly cold.</div>
+        </div>
+
+        <!-- what's happening callout -->
+        <div style="background:var(--ink);color:#fafaf7;border-radius:12px;padding:20px 22px;">
+          <div style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,250,247,.4);margin-bottom:10px;">What's happening here</div>
+          <div style="font-size:13px;line-height:1.7;color:rgba(250,250,247,.85);">
+            <div style="margin-bottom:8px;">Every phrase in Adewale's message is broken down individually — <span style="color:#52b788;">green</span> means you already know it, <span style="color:#7f77dd;">purple</span> is new, <span style="color:#ef9f27;">amber</span> is cultural and kept as-is.</div>
+            <div style="margin-bottom:8px;">As you type in English, the Yoruba preview updates live on the right. The system knows "Emi yoo WhatsApp ọ" is more natural than a literal translation.</div>
+            <div>Tap Casual or Formal above — the preview and suggestions both update instantly, and a note tells you if your tone mismatches how Adewale has been speaking to you.</div>
+          </div>
+        </div>
+
+        <!-- phrase memory visual -->
+        <div style="background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px 18px;">
+          <div style="font-size:11px;font-weight:500;color:#4a4a44;margin-bottom:12px;">Phrase memory — how "E se" is being learned</div>
+          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
+            <div style="border:1px solid #9fe1cb;border-radius:8px;padding:8px;text-align:center;">
+              <div style="font-size:9.5px;color:#8a8a82;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">New</div>
+              <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">"E se"</div>
+              <div style="font-size:10.5px;color:#1d9e75;">Full translation shown</div>
+              <div style="height:3px;border-radius:2px;background:#1d9e75;width:20%;margin:6px auto 0;"></div>
+            </div>
+            <div style="border:1px solid #fac775;border-radius:8px;padding:8px;text-align:center;">
+              <div style="font-size:9.5px;color:#8a8a82;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Seen 3×</div>
+              <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">"E se"</div>
+              <div style="font-size:10.5px;color:#ba7517;">Translation dimmer</div>
+              <div style="height:3px;border-radius:2px;background:#ba7517;width:50%;margin:6px auto 0;"></div>
+            </div>
+            <div style="border:1px solid #afa9ec;border-radius:8px;padding:8px;text-align:center;background:#fafaff;">
+              <div style="font-size:9.5px;color:#8a8a82;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Seen 7× ← here</div>
+              <div style="font-size:12px;font-weight:500;color:#534ab7;margin-bottom:3px;">"E se"</div>
+              <div style="font-size:10.5px;color:#534ab7;">Tap to reveal</div>
+              <div style="height:3px;border-radius:2px;background:#534ab7;width:80%;margin:6px auto 0;"></div>
+            </div>
+            <div style="border:1px solid #f09595;border-radius:8px;padding:8px;text-align:center;">
+              <div style="font-size:9.5px;color:#8a8a82;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;">Seen 15×</div>
+              <div style="font-size:12px;font-weight:500;color:#1a1a18;margin-bottom:3px;">"E se"</div>
+              <div style="font-size:10.5px;color:#d85a30;">No hint — yours</div>
+              <div style="height:3px;border-radius:2px;background:#d85a30;width:100%;margin:6px auto 0;"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- TECH STACK -->
   <div class="section">
     <div class="section-tag">Technical stack</div>
@@ -946,5 +1272,30 @@ body {
   <div>Pending review · Not submitted to Notion yet</div>
 </div>
 
+<script>
+function setTone(t){
+  var bc=document.getElementById('btn-casual');
+  var bf=document.getElementById('btn-formal');
+  var prev=document.getElementById('yoruba-preview');
+  var s1=document.getElementById('s1');
+  var s2=document.getElementById('s2');
+  var tn=document.getElementById('tone-note');
+  if(t==='casual'){
+    bc.style.background='#e1f5ee';bc.style.color='#085041';bc.style.fontWeight='500';
+    bf.style.background='transparent';bf.style.color='#8a8a82';bf.style.fontWeight='400';
+    prev.innerHTML='<span style="font-weight:500;color:#1d9e75;border-bottom:1.5px dotted #1d9e75;">Daadaa</span>, <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">emi yoo rang ọ alẹ yi pẹlu alaye</span>. <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Mo n retí láti ba ọ sọrọ</span>.';
+    s1.textContent='A ó sọrọ jẹ';s1.style.borderColor='#cecbf6';s1.style.background='#eeedfe';s1.style.color='#3c3489';
+    s2.textContent='Emi yoo WhatsApp ọ alẹ yi';s2.style.borderColor='#cecbf6';s2.style.background='#eeedfe';s2.style.color='#3c3489';
+    tn.innerHTML='<strong style="color:#4a4a44;">Casual</strong> — matches Adewale\'s tone. He used "ore mi" — friendly and warm. Switching to formal may feel slightly cold.';
+  } else {
+    bf.style.background='#eeedfe';bf.style.color='#3c3489';bf.style.fontWeight='500';
+    bc.style.background='transparent';bc.style.color='#8a8a82';bc.style.fontWeight='400';
+    prev.innerHTML='<span style="font-weight:500;color:#1d9e75;border-bottom:1.5px dotted #1d9e75;">Ó dára</span>, <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Emi yoo firanṣẹ awọn alaye sí ọ ní òru oni</span>. <span style="font-weight:500;color:#534ab7;border-bottom:1.5px dotted #534ab7;">Mo n retí pẹlu inu-didun láti bá ọ sọrọ</span>.';
+    s1.textContent='Yoo jẹ ọlá mi láti bá ọ sọrọ';s1.style.borderColor='#afa9ec';s1.style.background='#f8f4ff';s1.style.color='#26215c';
+    s2.textContent='Emi yoo firanṣẹ alaye ní kete';s2.style.borderColor='#afa9ec';s2.style.background='#f8f4ff';s2.style.color='#26215c';
+    tn.innerHTML='<strong style="color:#4a4a44;">Formal</strong> — more professional distance. Note: Adewale spoke casually — this shift may feel slightly cold to him.';
+  }
+}
+</script>
 </body>
 </html>
