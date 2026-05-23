@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bridge — Chrome Extension Proposal · Idea 1</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a18;
+  --ink-soft: #4a4a44;
+  --ink-muted: #8a8a82;
+  --accent: #2d6a4f;
+  --accent-light: #e8f5ee;
+  --accent-mid: #52b788;
+  --warn: #b5451b;
+  --warn-light: #fdf0ea;
+  --purple: #534AB7;
+  --purple-light: #eeedfe;
+  --gold: #9a6f2b;
+  --gold-light: #fdf3dc;
+  --border: #e4e4dc;
+  --bg: #fafaf7;
+  --card: #ffffff;
+  --sans: 'DM Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  padding: 0;
+}
+
+/* COVER */
+.cover {
+  background: var(--ink);
+  color: #fafaf7;
+  padding: 80px 60px 64px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: 20px; left: -60px;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+.cover-tag {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  font-weight: 500;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cover-tag::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--accent-mid);
+}
+.cover h1 {
+  font-family: var(--serif);
+  font-size: 56px;
+  line-height: 1.05;
+  font-weight: 400;
+  margin-bottom: 8px;
+  letter-spacing: -.01em;
+}
+.cover h1 em {
+  font-style: italic;
+  color: var(--accent-mid);
+}
+.cover-sub {
+  font-size: 15px;
+  color: rgba(250,250,247,0.55);
+  margin-top: 20px;
+  max-width: 480px;
+  font-weight: 300;
+  line-height: 1.6;
+}
+.cover-meta {
+  margin-top: 48px;
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.cm-item { }
+.cm-label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(250,250,247,0.35);
+  margin-bottom: 4px;
+}
+.cm-value {
+  font-size: 14px;
+  color: rgba(250,250,247,0.8);
+  font-weight: 500;
+}
+
+/* BODY */
+.body { max-width: 800px; margin: 0 auto; padding: 60px 40px; }
+
+/* SECTION */
+.section { margin-bottom: 56px; }
+.section-tag {
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--ink-muted);
+}
+.section h2 {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.lead {
+  font-size: 16px;
+  color: var(--ink-soft);
+  line-height: 1.75;
+  margin-bottom: 28px;
+  max-width: 640px;
+}
+
+/* PROBLEM STATEMENT */
+.problem-box {
+  background: var(--ink);
+  color: #fafaf7;
+  border-radius: 12px;
+  padding: 32px 36px;
+  margin-bottom: 32px;
+}
+.problem-box p {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-style: italic;
+}
+.problem-box p em { color: var(--accent-mid); font-style: normal; }
+
+/* BENEFIT CARDS */
+.benefit-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 24px;
+}
+.benefit-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+.bc-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.bc-green { background: var(--accent-light); color: var(--accent); }
+.bc-purple { background: var(--purple-light); color: var(--purple); }
+.bc-gold { background: var(--gold-light); color: var(--gold); }
+.bc-warn { background: var(--warn-light); color: var(--warn); }
+.benefit-card h3 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--ink);
+}
+.benefit-card p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+/* STAT ROW */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 28px 0;
+}
+.stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  color: var(--accent);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--ink-muted);
+  line-height: 1.4;
+}
+
+/* DIVIDER */
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+}
+
+/* COMPETITOR TABLE */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 20px;
+}
+.comp-table thead tr {
+  border-bottom: 1px solid var(--border);
+}
+.comp-table th {
+  text-align: left;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  padding: 10px 14px;
+}
+.comp-table th:first-child { padding-left: 0; }
+.comp-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.comp-table td:first-child {
+  padding-left: 0;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+}
+.comp-table tr.bridge-row td {
+  background: var(--accent-light);
+  font-weight: 500;
+}
+.comp-table tr.bridge-row td:first-child {
+  color: var(--accent);
+  border-radius: 6px 0 0 6px;
+}
+.comp-table tr.bridge-row td:last-child { border-radius: 0 6px 6px 0; }
+.yes { color: var(--accent); font-weight: 500; }
+.no { color: var(--warn); }
+.partial { color: var(--gold); }
+.pct { font-family: var(--serif); font-size: 16px; }
+
+/* PRICING */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+.price-card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 22px;
+  background: var(--card);
+}
+.price-card.featured {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+.price-tag-label {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.price-tag-label.ft { color: var(--accent); }
+.price-name {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--ink);
+}
+.price-amount {
+  font-family: var(--serif);
+  font-size: 34px;
+  color: var(--ink);
+  line-height: 1;
+}
+.price-amount span {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+.price-features {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.pf {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  line-height: 1.4;
+}
+.pf::before {
+  content: '—';
+  color: var(--ink-muted);
+  font-size: 11px;
+  flex-shrink: 0;
+}
+
+/* RECRUITMENT SECTION */
+.flow-row {
+  display: flex;
+  gap: 0;
+  margin: 24px 0;
+  align-items: stretch;
+}
+.flow-step {
+  flex: 1;
+  padding: 20px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.flow-step:first-child { border-radius: 10px 0 0 10px; }
+.flow-step:last-child { border-radius: 0 10px 10px 0; border-left: none; }
+.flow-step:not(:first-child):not(:last-child) { border-left: none; }
+.flow-n {
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  margin-bottom: 8px;
+}
+.flow-step h4 { font-size: 13px; font-weight: 500; margin-bottom: 5px; }
+.flow-step p { font-size: 12px; color: var(--ink-soft); line-height: 1.5; }
+.flow-arrow {
+  display: flex;
+  align-items: center;
+  padding: 0 2px;
+  color: var(--ink-muted);
+  font-size: 14px;
+  z-index: 1;
+}
+
+/* UX SECTION */
+.ux-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 20px;
+}
+.ux-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+.ux-card h4 {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ux-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+.ux-card ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.ux-card ul li {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  padding-left: 12px;
+  position: relative;
+  line-height: 1.5;
+}
+.ux-card ul li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--ink-muted);
+}
+
+/* QUOTE */
+.quote-block {
+  border-left: 3px solid var(--accent);
+  padding: 16px 24px;
+  margin: 28px 0;
+  background: var(--accent-light);
+  border-radius: 0 8px 8px 0;
+}
+.quote-block p {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: var(--ink);
+  font-style: italic;
+  line-height: 1.5;
+}
+.quote-block cite {
+  display: block;
+  font-size: 12px;
+  color: var(--ink-muted);
+  font-style: normal;
+  margin-top: 8px;
+}
+
+/* TAG */
+.idea-tag {
+  display: inline-block;
+  background: var(--purple-light);
+  color: var(--purple);
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+  letter-spacing: .04em;
+  margin-bottom: 32px;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--ink);
+  color: rgba(250,250,247,.4);
+  padding: 32px 60px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer strong { color: rgba(250,250,247,.8); }
+
+@media (max-width: 600px) {
+  .cover { padding: 48px 28px; }
+  .cover h1 { font-size: 36px; }
+  .body { padding: 40px 24px; }
+  .benefit-grid, .pricing-grid, .ux-grid, .stat-row { grid-template-columns: 1fr; }
+  .flow-row { flex-direction: column; }
+  .flow-step { border-radius: 0 !important; border: 1px solid var(--border) !important; margin-bottom: -1px; }
+  .flow-arrow { display: none; }
+  .footer { flex-direction: column; gap: 8px; padding: 24px; }
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-tag">Chrome Extension · Idea 1</div>
+  <h1>Bridge — <em>Speak their language.</em></h1>
+  <p class="cover-sub">A bilingual communication layer that lives inside your chats — and follows you as a floating bubble when you leave. Language retention happens as a byproduct of conversations you're already having, with no extra time or study required.</p>
+  <div class="cover-meta">
+    <div class="cm-item">
+      <div class="cm-label">Category</div>
+      <div class="cm-value">Language Acquisition + Communication</div>
+    </div>
+    <div class="cm-item">
+      <div class="cm-label">Platform</div>
+      <div class="cm-value">Chrome Extension (MV3)</div>
+    </div>
+    <div class="cm-item">
+      <div class="cm-label">Stage</div>
+      <div class="cm-value">Concept — Idea 1</div>
+    </div>
+  </div>
+</div>
+
+<div class="body">
+
+  <div class="idea-tag">Idea 1 — Bridge</div>
+
+  <!-- PROBLEM -->
+  <div class="section">
+    <div class="section-tag">The problem</div>
+    <h2>Language is the last barrier nobody solved at work.</h2>
+    <p class="lead">Multinational teams default to English — not because everyone is comfortable in it, but because it is the only common ground. That is a tax. Every meeting, message, and negotiation costs more when half the room is operating in their second or third language.</p>
+
+    <div class="problem-box">
+      <p>A recruiter who speaks a candidate's language doesn't just communicate better — they <em>close more</em>. A company where every teammate speaks multiple languages doesn't just collaborate better — they <em>think differently</em>.</p>
+    </div>
+
+    <p class="lead">Bridge doesn't ask anyone to study. It makes vocabulary retention, phrase familiarity, and cultural understanding happen as a byproduct of conversations they are already having.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT IT IS -->
+  <div class="section">
+    <div class="section-tag">What it is</div>
+    <h2>Lives inside your chat. Follows you when you leave.</h2>
+    <p class="lead">Bridge has two states — and it moves between them automatically, the same way Facebook Messenger does.</p>
+
+    <div class="benefit-grid" style="margin-bottom: 28px;">
+      <div class="benefit-card" style="border-color: var(--accent); border-width: 1.5px;">
+        <div class="bc-icon bc-green">①</div>
+        <h3>Embedded — when you're in the chat</h3>
+        <p>When you're on LinkedIn, Slack, WhatsApp Web, or Gmail, Bridge lives <em>inside</em> the chat interface itself. Bilingual translation appears inline below each message. The compose preview is part of the input area. It feels native — not bolted on top. No overlay, no separate panel. Just the chat, with language built in.</p>
+      </div>
+      <div class="benefit-card" style="border-color: var(--purple); border-width: 1.5px;">
+        <div class="bc-icon bc-purple">②</div>
+        <h3>Floating bubble — when you leave</h3>
+        <p>The moment you navigate to a different tab, the active conversation detaches and becomes a floating chat head — exactly like Messenger. It follows you across every tab. Click to expand a mini chat window with the full bilingual view and compose panel. Reply without going back to the platform. Close or minimise any time.</p>
+      </div>
+    </div>
+
+    <p class="lead">The result: a conversation you started on LinkedIn can be replied to from a Google Doc tab, a Notion page, or your ATS — without ever switching back. The language layer travels with it.</p>
+
+    <div class="quote-block">
+      <p>"Learning a language should be as accessible as trying food from another country."</p>
+      <cite>Core product philosophy</cite>
+    </div>
+
+    <p class="lead">The three axes that make it different from every existing tool:</p>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <div class="bc-icon bc-green">①</div>
+        <h3>Comfort language — any language</h3>
+        <p>You set whatever language you think in best — Urdu, Tagalog, Yoruba, Arabic, English. All translations, notes, and suggestions are delivered in that language. Not English by default. No assumptions.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-purple">②</div>
+        <h3>Target language — what you're learning</h3>
+        <p>The language of the person you are speaking with, or the language you are deliberately trying to acquire through real work conversations.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-gold">③</div>
+        <h3>Render mode — how it appears to you</h3>
+        <p>Native script, romanized transliteration, or smart mix. You progress naturally from Roman script toward native script as comfort builds — without manually changing settings.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-warn">✦</div>
+        <h3>Smart mix — the differentiator</h3>
+        <p>Cultural phrases ("insha allah", "ore mi", "salamat") are never sanitized. Familiar phrases stay in your language as anchors. Only genuinely new vocabulary is surfaced in the target language.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- BENEFITS -->
+  <div class="section">
+    <div class="section-tag">Benefits</div>
+    <h2>Who this changes and how.</h2>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-num">47</div>
+        <div class="stat-label">avg. phrases naturally acquired per month — from real conversations, not drills</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0</div>
+        <div class="stat-label">extra minutes of study required outside of normal work hours</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100+</div>
+        <div class="stat-label">language pairs supported — any comfort language, any target language</div>
+      </div>
+    </div>
+
+    <div class="benefit-grid" style="margin-top: 0;">
+      <div class="benefit-card">
+        <div class="bc-icon bc-green">↑</div>
+        <h3>Recruiters close more internationally</h3>
+        <p>A recruiter who speaks even basic phrases in a candidate's language signals respect, cultural awareness, and genuine interest. That converts. Candidates who feel understood are far more likely to engage.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-purple">⟳</div>
+        <h3>How language is actually learned here</h3>
+        <p>Every phrase you encounter in a real conversation is tracked automatically. The first time you see "Báwo ni" it is fully translated. By the third encounter, the translation appears dimmer. By the seventh, you tap to confirm you know it. By the fifteenth, no hint appears at all — the phrase is yours. No flashcard ever created. No drill ever run. This is how children learn language: through repeated exposure in context, not repetition out of context.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-gold">⊕</div>
+        <h3>Multinational teams: lower cognitive load, higher output</h3>
+        <p>Employees forced to operate entirely in a second language carry a measurable cognitive tax on every message, meeting, and decision. Bridge lets each team member read and write in their strongest language while still communicating across language lines — reducing that tax without requiring anyone to change how they work.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-warn">◈</div>
+        <h3>Register and cultural fluency, not just word meaning</h3>
+        <p>Every phrase is tagged with tone (formal vs. casual) and cultural context. "Insha allah" is not just "God willing" — in some contexts it signals genuine hope, in others polite deflection. Bridge explains this in your comfort language, at the moment it appears in a real conversation. That is how sociolinguistic intuition is built: from live context, not a grammar book.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-green">⊞</div>
+        <h3>A team that becomes multilingual through work, not training</h3>
+        <p>After six months of daily use on a team plan, each member will have naturally retained hundreds of phrases from real conversations — greetings, professional phrases, culturally specific expressions. They didn't take a class. They just did their jobs. That compound effect across a whole company is a strategic differentiator no competitor can replicate through a hiring policy alone.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="bc-icon bc-purple">◎</div>
+        <h3>The conversation never drops</h3>
+        <p>When you're in the chat, Bridge is embedded in it. When you leave, it follows as a floating bubble — exactly like Messenger chat heads. A reply you started on LinkedIn can be finished from a Google Doc tab. The bilingual layer travels with the conversation, not with the platform.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RECRUITMENT -->
+  <div class="section">
+    <div class="section-tag">Recruitment impact</div>
+    <h2>How Bridge improves hiring internationally.</h2>
+    <p class="lead">Most international hiring fails not at the screening stage but at the human stage — rapport, tone, trust. Language is the vehicle for all three.</p>
+
+    <div class="flow-row">
+      <div class="flow-step">
+        <div class="flow-n">Stage 1</div>
+        <h4>First contact</h4>
+        <p>Recruiter reaches out in their own language as usual. Optionally, Bridge generates a preview of the message in the candidate's language — the recruiter chooses whether to send it translated or not.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-n">Stage 2</div>
+        <h4>Live conversation</h4>
+        <p>Every reply appears in the recruiter's comfort language. New phrases are highlighted and explained in context — not as a list to memorise, but as they naturally surface. Repeated phrases begin to lose their translation hints. The recruiter starts recognising words without looking.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-n">Stage 3</div>
+        <h4>Qualification</h4>
+        <p>Recruiter asks questions in target language with tone guidance — formal or casual adjusted to match the candidate's register. Notes saved per candidate in their language.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-n">Stage 4</div>
+        <h4>Offer & close</h4>
+        <p>After 4–6 weeks of active conversations, the recruiter has naturally retained greetings, availability phrases, and professional expressions in the candidate's language — without a single study session. The relationship, and the language, closes the deal.</p>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:28px">
+      <p>A recruiter who speaks the language of a candidate is not just a better communicator — they are a signal that the company respects where that candidate comes from.</p>
+      <cite>Bridge product positioning</cite>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- COMPETITOR COMPARISON -->
+  <div class="section">
+    <div class="section-tag">Market comparison</div>
+    <h2>What exists, and where it stops.</h2>
+    <p class="lead">Every existing tool solves a fragment of the problem. None of them were built for live professional messaging with language acquisition as the intent.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Live chat</th>
+          <th>Comfort language</th>
+          <th>Compose preview</th>
+          <th>Acquisition</th>
+          <th>Cross-platform</th>
+          <th>Coverage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="bridge-row">
+          <td>Bridge (this)</td>
+          <td class="yes">Yes</td>
+          <td class="yes">Any language</td>
+          <td class="yes">Live, as you type</td>
+          <td class="yes">Core feature</td>
+          <td class="yes">All platforms</td>
+          <td class="yes pct">100%</td>
+        </tr>
+        <tr>
+          <td>WhatsApp RT Translator</td>
+          <td class="partial">WhatsApp only</td>
+          <td class="no">English assumed</td>
+          <td class="partial">Final only, no live</td>
+          <td class="no">None</td>
+          <td class="no">One platform</td>
+          <td class="partial pct">~25%</td>
+        </tr>
+        <tr>
+          <td>Lang Translator</td>
+          <td class="partial">WA, Discord, TG</td>
+          <td class="no">English assumed</td>
+          <td class="no">None</td>
+          <td class="no">None</td>
+          <td class="no">3 platforms</td>
+          <td class="partial pct">~15%</td>
+        </tr>
+        <tr>
+          <td>DeepL Chrome Ext.</td>
+          <td class="no">Posts only (no DMs)</td>
+          <td class="no">English assumed</td>
+          <td class="partial">Compose assist</td>
+          <td class="no">None</td>
+          <td class="partial">Gmail + LinkedIn posts</td>
+          <td class="partial pct">~20%</td>
+        </tr>
+        <tr>
+          <td>Trancy</td>
+          <td class="no">Video/web only</td>
+          <td class="no">English assumed</td>
+          <td class="no">None</td>
+          <td class="partial">Video-based only</td>
+          <td class="no">Streaming platforms</td>
+          <td class="no pct">~10%</td>
+        </tr>
+        <tr>
+          <td>Immersive Translate</td>
+          <td class="no">Webpages only</td>
+          <td class="no">English assumed</td>
+          <td class="no">None</td>
+          <td class="no">None</td>
+          <td class="no">Webpages, PDF</td>
+          <td class="no pct">~8%</td>
+        </tr>
+        <tr>
+          <td>Toucan (Babbel)</td>
+          <td class="no">Read-only pages</td>
+          <td class="no">English assumed</td>
+          <td class="no">None</td>
+          <td class="partial">Passive word swap</td>
+          <td class="no">Webpages only</td>
+          <td class="no pct">~10%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="font-size:12px;color:var(--ink-muted);margin-top:12px;">Coverage % = how much of Bridge's core feature set each competitor addresses.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PRICING -->
+  <div class="section">
+    <div class="section-tag">Pricing model</div>
+    <h2>Positioned between consumer and B2B.</h2>
+    <p class="lead">Consumer language tools charge $3–10/month. B2B recruiter tools charge $29–99/month. Bridge sits between them and justifies both sides.</p>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-tag-label">Free</div>
+        <div class="price-name">Explorer</div>
+        <div class="price-amount">$0</div>
+        <div class="price-features">
+          <div class="pf">3 language pairs</div>
+          <div class="pf">50 translations per day</div>
+          <div class="pf">Notes for up to 10 contacts</div>
+          <div class="pf">Phrase memory (basic)</div>
+          <div class="pf">WhatsApp Web + Gmail</div>
+        </div>
+      </div>
+      <div class="price-card featured">
+        <div class="price-tag-label ft">Most popular</div>
+        <div class="price-name">Individual</div>
+        <div class="price-amount">$9 <span>/ month</span></div>
+        <div class="price-features">
+          <div class="pf">All language pairs (100+)</div>
+          <div class="pf">Unlimited translations</div>
+          <div class="pf">All platforms incl. LinkedIn + Slack</div>
+          <div class="pf">Full phrase memory system</div>
+          <div class="pf">Tone toggle (casual / formal)</div>
+          <div class="pf">Cultural context tooltips</div>
+          <div class="pf">Compose suggestions</div>
+          <div class="pf">Monthly acquisition report</div>
+        </div>
+      </div>
+      <div class="price-card">
+        <div class="price-tag-label">For companies</div>
+        <div class="price-name">Team</div>
+        <div class="price-amount">$15 <span>/ seat / month</span></div>
+        <div class="price-features">
+          <div class="pf">Everything in Individual</div>
+          <div class="pf">Central admin panel</div>
+          <div class="pf">Shared language configs</div>
+          <div class="pf">Team acquisition analytics</div>
+          <div class="pf">SSO + priority support</div>
+          <div class="pf">Minimum 5 seats</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- UI/UX -->
+  <div class="section">
+    <div class="section-tag">UI / UX overview</div>
+    <h2>Two states. One experience.</h2>
+    <p class="lead">Bridge behaves differently depending on where you are — embedded when you're in the chat, a floating bubble when you leave. The language layer never drops, regardless of which state you're in.</p>
+
+    <div class="problem-box" style="margin-bottom: 28px;">
+      <p>Think <em>Messenger chat heads</em> — but for every professional platform, with a bilingual layer built into every conversation.</p>
+    </div>
+
+    <div class="ux-grid">
+      <div class="ux-card" style="border-color: var(--accent); grid-column: 1 / -1;">
+        <h4><div class="ux-dot"></div>State 1 — Embedded (you're on the platform)</h4>
+        <ul>
+          <li>Bridge injects directly into LinkedIn DMs, Slack threads, WhatsApp Web, and Gmail — no overlay, no separate panel</li>
+          <li>Every incoming message: original text on top, comfort language translation inline below it</li>
+          <li>Phrase notes appear beneath the translation — every phrase colour-coded and broken down</li>
+          <li>Compose area: your input on the left, live target language preview on the right — built into the platform's own text box</li>
+          <li>Tone toggle (Casual / Formal) sits above the compose area — one click, preview updates instantly</li>
+          <li>Feels like the platform built it themselves</li>
+        </ul>
+      </div>
+      <div class="ux-card" style="border-color: var(--purple); grid-column: 1 / -1;">
+        <h4><div class="ux-dot" style="background: var(--purple);"></div>State 2 — Floating bubble (you've left the platform)</h4>
+        <ul>
+          <li>The moment you navigate away from the chat platform, the active conversation detaches into a floating chat head</li>
+          <li>Small avatar bubble — draggable, sits in the corner of any tab, unobtrusive</li>
+          <li>Click to expand: full mini chat window with bilingual view, phrase notes, and compose panel — all in the bubble</li>
+          <li>Reply directly from the bubble without going back to LinkedIn, Slack, or WhatsApp</li>
+          <li>Multiple conversations can each have their own bubble — like Messenger chat heads</li>
+          <li>Minimise any bubble individually or dismiss when the conversation is done</li>
+        </ul>
+      </div>
+      <div class="ux-card">
+        <h4><div class="ux-dot"></div>Bilingual chat view (both states)</h4>
+        <ul>
+          <li>Every phrase in every message broken down individually</li>
+          <li>Colour-coded: purple (new) · green (yours) · amber (cultural) · grey (fading)</li>
+          <li>Always visible — no clicking to reveal translations</li>
+          <li>Cultural phrases preserved as-is with a one-time context note</li>
+        </ul>
+      </div>
+      <div class="ux-card">
+        <h4><div class="ux-dot"></div>Compose panel (both states)</h4>
+        <ul>
+          <li>Type in your comfort language — target language preview appears live alongside</li>
+          <li>Tone toggle: Casual / Formal — updates in real time</li>
+          <li>"More natural" AI suggestions below the preview</li>
+          <li>Context note warns if your tone mismatches the conversation's register</li>
+        </ul>
+      </div>
+      <div class="ux-card">
+        <h4><div class="ux-dot"></div>Phrase memory — 4 exposure stages</h4>
+        <ul>
+          <li>Seen 1×: full translation always visible</li>
+          <li>Seen 3×: translation shown dimmer — system starts trusting you</li>
+          <li>Seen 7×: tap to reveal — almost yours</li>
+          <li>Seen 15×: no hint — the phrase is retained</li>
+        </ul>
+      </div>
+      <div class="ux-card">
+        <h4><div class="ux-dot"></div>Language features (both states)</h4>
+        <ul>
+          <li>Tone & register tags — formal vs. casual on every phrase</li>
+          <li>Cultural context tooltip — tap any phrase for meaning, usage, cultural signal</li>
+          <li>Script bridge — Roman → mixed → native script, automatic progression</li>
+          <li>Conversation phrase bank — save any phrase with one tap</li>
+        </ul>
+      </div>
+      <div class="ux-card">
+        <h4><div class="ux-dot"></div>Ambient progress</h4>
+        <ul>
+          <li>No streaks, no points, no leaderboards</li>
+          <li>Monthly: "You retained 47 Yoruba phrases from real conversations"</li>
+          <li>Lists the actual phrases — and where you first saw each one</li>
+          <li>Tracks phrase retention, register familiarity, script progress</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- TECH STACK -->
+  <div class="section">
+    <div class="section-tag">Technical stack</div>
+    <h2>Lightweight. Defensible. Buildable.</h2>
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <h3>Extension framework</h3>
+        <p>Plasmo Framework (MV3, React, Tailwind) — handles both content script injection for embedded mode and the persistent background service worker + floating iframe for the bubble state. Built specifically for this kind of dual-mode browser behaviour.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Backend</h3>
+        <p>Supabase — auth, contact notes, phrase memory, team data. Edge Functions for translation orchestration. Clean and fast to ship MVP on.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Translation engine</h3>
+        <p>OpenAI API — tone preservation, smart mix, cultural phrase detection, compose suggestions. Not Google Translate. That's the technical moat.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Legal posture</h3>
+        <p>Manual-triggered, user-controlled. An AI communication assistant — not an automation bot. Never initiates messages, never background-monitors, never scrapes.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div><strong>Bridge</strong> — Chrome Extension Idea 1 · Confidential draft</div>
+  <div>Pending review · Not submitted to Notion yet</div>
+</div>
+
+</body>
+</html>
